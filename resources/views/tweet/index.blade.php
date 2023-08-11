@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
+    <link href="{{mix('/css/app.css')}}" rel="stylesheet">
+    <script src="{{mix('/js/app.js')}}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>つぶやきアプリ</title>
 </head>
@@ -26,6 +28,7 @@
     @foreach($tweets as $tweet)
     <details>
         <summary>{{$tweet->content}} by{{$tweet->user->name}}</summary>
+        @if(\Illuminate\Support\Facades\Auth::id() === $tweet->user_id)
         <div>
             <a href="{{route('tweet.update.index',['tweetId' => $tweet->id])}}">編集</a>
             <form action="{{route('tweet.delete',['tweetId' => $tweet->id])}}" method="post">
@@ -34,6 +37,9 @@
                 <button type="submit">削除</button>
             </form>
         </div>
+        @else
+            編集できません
+        @endif
     </details>
     @endforeach
 </body>
