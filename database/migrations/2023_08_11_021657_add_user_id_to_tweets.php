@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tweets', function (Blueprint $table) {
-            //
+            $table->unsignedBigInteger('user_id')->after('id');
+            //userテーブルのidカラムにuser_idカラムを関連付けます。
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -23,6 +25,8 @@ return new class extends Migration
     {
         Schema::table('tweets', function (Blueprint $table) {
             //
+            $table->dropForeign('tweets_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 };
