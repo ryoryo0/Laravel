@@ -8,23 +8,27 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class NewUserIntroduction extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $subject = '新しいユーザーが追加されました！';
+    public User $toUser;
+    public User $newUser;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(User $toUser, User $newUser)
     {
-        //
+        $this->toUser = $toUser;
+        $this->newUser = $newUser;
     }
 
     public function build(){
-        return $this->view('email.new_user_introduction');
+        return $this->markdown('email.new_user_introduction');
     }
 
     /**
@@ -43,7 +47,7 @@ class NewUserIntroduction extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'email.new_user_introduction',
         );
     }
 
