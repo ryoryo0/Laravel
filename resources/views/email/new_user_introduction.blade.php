@@ -7,7 +7,7 @@
 新しく{{$newUser->name}}さんが参加しましたよ！
 @endcomponent
 
-@component('mail::button',['url' => ('twet.index')])
+@component('mail::button',['url' => route('tweet.index')])
     つぶやきを見に行く
 @endcomponent
 
