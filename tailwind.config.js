@@ -23,3 +23,6 @@ export default {
 
     plugins: [forms],
 };
+
+
+// コメントの追

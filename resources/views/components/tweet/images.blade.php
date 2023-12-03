@@ -36,8 +36,7 @@
             <div @click.away="imgModal = ''" class="flex flex-col max-w-3xl max-h-full overflow-auto">
                 <div class="z-50">
                     <button @click="imgModal = ''" class="float-right pt-2 pr-2 outline-none focus:outline-none">
-                        <svg>
-                        </svg>
+                        <p class="text-white">×</p>
                     </button>
                 </div>
                 <div class="p-2">
